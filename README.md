@@ -1,6 +1,6 @@
 # indusbroadband
 
-Indus Broadband payment-methods page. Live at https://indusbroadband.com.pk
+Indus Broadband ISP website. Live at https://indusbroadband.com.pk
 (also still on GitHub Pages: https://indusbroadband.github.io/).
 
 ## Hosting

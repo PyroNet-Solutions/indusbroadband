@@ -1,115 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Indus Broadband Pvt Ltd Payment Methods</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom right, #f9f9ff, #dbe9ff);
-      padding: 20px;
-      color: #1a1a1a;
-    }
-    .logo-header {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 10px;
-    }
-    .logo-header img {
-      height: 140px;
-      object-fit: contain;
-    }
-    h1 {
-      text-align: center;
-      color: #005baa;
-      margin-bottom: 0;
-    }
-    h2 {
-      text-align: center;
-      font-size: 18px;
-      font-weight: normal;
-      color: #005baa;
-      margin-top: 5px;
-    }
-    .payment-box {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 20px;
-      margin: 25px auto;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      max-width: 500px;
-      text-align: center;
-    }
-    .logo {
-      height: 40px;
-      vertical-align: middle;
-      margin-bottom: 10px;
-    }
-    .copy-btn {
-      display: block;
-      background: #007bff;
-      color: white;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 25px;
-      cursor: pointer;
-      margin: 15px auto 0;
-      font-size: 14px;
-      transition: background 0.3s ease;
-    }
-    .copy-btn:hover {
-      background-color: #0056b3;
-    }
-    .account-section {
-      margin-top: 10px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indus Broadband | Fiber Internet in Lahore</title>
+<meta name="description" content="Indus Broadband: fast, reliable fiber (FTTH) internet for homes and businesses in DHA Phase 8 and Lahore Cantt.">
+<link rel="icon" href="IndusLogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#2b3990;--sky:#27aae1;--ink:#1c2340;--muted:#5b6380;--bg:#f5f8fc;--card:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Poppins,Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);z-index:10;border-bottom:1px solid #e8edf5}
+nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+nav img{height:46px}
+nav ul{display:flex;gap:28px;list-style:none;font-weight:500;font-size:15px}
+nav ul a:hover{color:var(--sky)}
+.btn{display:inline-block;background:var(--sky);color:#fff;padding:12px 26px;border-radius:30px;font-weight:600;transition:.2s}
+.btn:hover{background:var(--navy)}
+.btn.ghost{background:transparent;border:2px solid #fff}
+.btn.ghost:hover{background:#fff;color:var(--navy)}
+.hero{background:linear-gradient(135deg,var(--navy),#1e2a6e 60%,var(--sky));color:#fff;padding:100px 0 110px;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(32px,5vw,54px);line-height:1.15;max-width:640px}
+.hero h1 span{color:var(--sky)}
+.hero p{font-size:18px;opacity:.9;max-width:560px;margin:20px 0 34px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+.sq{position:absolute;background:var(--sky);border-radius:12px;opacity:.85}
+.stats{display:flex;gap:40px;margin-top:56px;flex-wrap:wrap}
+.stats b{display:block;font-size:28px}
+.stats small{opacity:.8}
+section{padding:90px 0}
+.alt{background:var(--bg)}
+.head{text-align:center;max-width:640px;margin:0 auto 50px}
+.head h2{font-size:clamp(26px,3.5vw,38px);color:var(--navy)}
+.head p{color:var(--muted);margin-top:10px}
+.grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--card);border-radius:18px;padding:32px;box-shadow:0 10px 30px rgba(43,57,144,.08);transition:.25s}
+.card:hover{transform:translateY(-6px)}
+.ico{width:56px;height:56px;border-radius:14px;background:#e6f6fd;color:var(--sky);display:grid;place-items:center;font-size:26px;margin-bottom:18px}
+.card h3{color:var(--navy);margin-bottom:8px}
+.card p{color:var(--muted);font-size:15px}
+.plan{text-align:center;border:2px solid transparent}
+.plan.pop{border-color:var(--sky);position:relative}
+.plan.pop:before{content:"Most Popular";position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--sky);color:#fff;font-size:12px;padding:4px 14px;border-radius:20px}
+.speed{font-size:48px;font-weight:700;color:var(--navy)}
+.speed small{font-size:18px}
+.plan ul{list-style:none;margin:20px 0 26px;color:var(--muted);font-size:15px}
+.plan li{padding:6px 0;border-bottom:1px dashed #e3e8f2}
+.areas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.areas span{background:#fff;border:1px solid #dbe6f5;padding:10px 20px;border-radius:30px;font-weight:500}
+.contact{display:grid;gap:30px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));align-items:start}
+.info div{display:flex;gap:14px;margin-bottom:22px}
+.info .ico{margin:0;flex:none;width:48px;height:48px;font-size:20px}
+.info b{display:block;color:var(--navy)}
+form{display:grid;gap:14px}
+input,select,textarea{font:inherit;padding:13px 16px;border:1px solid #d6deec;border-radius:12px;width:100%}
+textarea{min-height:110px;resize:vertical}
+footer{background:var(--ink);color:#c9cfe3;padding:40px 0;font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.wa{position:fixed;right:20px;bottom:20px;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;font-size:30px;box-shadow:0 8px 20px rgba(0,0,0,.25);z-index:20}
+@media(max-width:760px){nav ul{display:none}.hero{padding:70px 0}.sq{display:none}}
+</style>
 </head>
 <body>
-  <div class="logo-header">
-    <img src="IndusLogo.png" alt="Indus Broadband Pvt Ltd Logo">
-  </div>
-  <h1>Indus Broadband Pvt Ltd</h1>
-  <h2>Payment Methods</h2>
 
-  <div class="payment-box">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8gN2V4ca4vUeXnk3KLDj9w8Jr7XYeOpn4og&s" alt="Soneri Bank" class="logo">
-    <strong>Soneri Bank</strong>
-    <div class="account-section">
-      <p><strong>Account Title:</strong> Indus Broadband Pvt Ltd</p>
-      <p><strong>Account Number:</strong> <span id="bank-account">029020011769587</span></p>
-      <button class="copy-btn" onclick="copyText('bank-account')">Copy Account Number</button>
+<header><div class="wrap"><nav>
+  <a href="#"><img src="IndusLogo.png" alt="Indus Broadband"></a>
+  <ul><li><a href="#services">Services</a></li><li><a href="#packages">Packages</a></li><li><a href="#coverage">Coverage</a></li><li><a href="#contact">Contact</a></li></ul>
+  <a class="btn" href="#contact">Get Connected</a>
+</nav></div></header>
+
+<section class="hero">
+  <div class="sq" style="width:110px;height:110px;right:12%;top:22%"></div>
+  <div class="sq" style="width:60px;height:60px;right:5%;top:15%"></div>
+  <div class="sq" style="width:70px;height:70px;right:20%;top:52%;opacity:.5"></div>
+  <div class="sq" style="width:40px;height:40px;right:8%;top:58%;opacity:.6"></div>
+  <div class="wrap">
+    <h1>Pure Fiber Internet for <span>Homes &amp; Businesses</span></h1>
+    <p>Indus Broadband brings fast, stable fiber-to-the-home internet to Lahore, with unlimited data, low latency and local support that picks up the phone.</p>
+    <div class="cta"><a class="btn" href="#packages">View Packages</a><a class="btn ghost" href="https://wa.me/923214477397">WhatsApp Us</a></div>
+    <div class="stats"><div><b>100%</b><small>Fiber network</small></div><div><b>Unlimited</b><small>Data, no caps</small></div><div><b>24/7</b><small>Support</small></div></div>
+  </div>
+</section>
+
+<section id="services"><div class="wrap">
+  <div class="head"><h2>Our Services</h2><p>One provider for everything your home or office needs online.</p></div>
+  <div class="grid">
+    <div class="card"><div class="ico">🏠</div><h3>Home Fiber (FTTH)</h3><p>Fiber straight to your door for streaming, gaming and working from home without buffering.</p></div>
+    <div class="card"><div class="ico">🏢</div><h3>Business Internet</h3><p>Dedicated bandwidth, static IPs and priority support for offices, shops and enterprises.</p></div>
+    <div class="card"><div class="ico">📺</div><h3>IPTV</h3><p>Live TV channels over your Indus connection with the Indus IPTV player.</p></div>
+    <div class="card"><div class="ico">🛠️</div><h3>Local Support</h3><p>Our own field team in DHA Phase 8 for fast installation and quick fault fixing.</p></div>
+  </div>
+</div></section>
+
+<section id="packages" class="alt"><div class="wrap">
+  <div class="head"><h2>Internet Packages</h2><p>All packages include unlimited data and a fiber-optic connection. Contact us for current prices and offers.</p></div>
+  <div class="grid">
+    <div class="card plan"><h3>Basic</h3><div class="speed">10<small> Mbps</small></div><ul><li>Unlimited data</li><li>Browsing &amp; HD streaming</li><li>Free router setup</li></ul><a class="btn" href="#contact">Subscribe</a></div>
+    <div class="card plan pop"><h3>Family</h3><div class="speed">20<small> Mbps</small></div><ul><li>Unlimited data</li><li>Multiple devices &amp; 4K</li><li>Free installation</li></ul><a class="btn" href="#contact">Subscribe</a></div>
+    <div class="card plan"><h3>Pro</h3><div class="speed">50<small> Mbps</small></div><ul><li>Unlimited data</li><li>Gaming &amp; work from home</li><li>Priority support</li></ul><a class="btn" href="#contact">Subscribe</a></div>
+    <div class="card plan"><h3>Business</h3><div class="speed">100+<small> Mbps</small></div><ul><li>Dedicated bandwidth</li><li>Static IP available</li><li>SLA &amp; 24/7 support</li></ul><a class="btn" href="#contact">Get a Quote</a></div>
+  </div>
+</div></section>
+
+<section id="coverage"><div class="wrap">
+  <div class="head"><h2>Coverage Areas</h2><p>Our fiber network is growing. Don't see your area? Ask us, we may already be there.</p></div>
+  <div class="areas"><span>DHA Phase 8</span><span>Cantt View</span><span>Lahore Cantt</span><span>Surrounding areas</span></div>
+</div></section>
+
+<section id="contact" class="alt"><div class="wrap">
+  <div class="head"><h2>Get Connected</h2><p>Call, WhatsApp or send a request and our team will contact you.</p></div>
+  <div class="contact">
+    <div class="info">
+      <div><span class="ico">📞</span><p><b>Phone / WhatsApp</b><a href="tel:+923214477397">+92 321 4477397</a></p></div>
+      <div><span class="ico">✉️</span><p><b>Email</b><a href="mailto:info@indusbroadband.pk">info@indusbroadband.pk</a></p></div>
+      <div><span class="ico">📍</span><p><b>Office</b>2nd Floor, Plaza No. 58, CC1, Sector T, DHA Phase 8, Lahore, Pakistan</p></div>
     </div>
+    <form id="f">
+      <input id="n" placeholder="Your name" required>
+      <input id="p" placeholder="Phone number" required>
+      <input id="a" placeholder="Area / address">
+      <select id="k"><option>Basic 10 Mbps</option><option selected>Family 20 Mbps</option><option>Pro 50 Mbps</option><option>Business</option></select>
+      <textarea id="m" placeholder="Message (optional)"></textarea>
+      <button class="btn" style="border:0;cursor:pointer">Send on WhatsApp</button>
+    </form>
   </div>
+</div></section>
 
-  <div class="payment-box">
-    <img src="https://crystalpng.com/wp-content/uploads/2024/12/new-Jazzcash-logo.png" alt="JazzCash" class="logo">
-    <strong>JazzCash</strong>
-    <div class="account-section">
-      <p><strong>Account Title:</strong> Numan Ali</p>
-      <p><strong>Account Number:</strong> <span id="jazz-account">03314477397</span></p>
-      <button class="copy-btn" onclick="copyText('jazz-account')">Copy Account Number</button>
-    </div>
-  </div>
+<footer><div class="wrap">
+  <span>© <span id="y"></span> Indus Broadband (Pvt) Ltd. All rights reserved.</span>
+  <span>DHA Phase 8, Lahore · +92 321 4477397</span>
+</div></footer>
 
-  <div class="payment-box">
-    <img src="https://crystalpng.com/wp-content/uploads/2024/10/Easypaisa-logo.png" alt="Easypaisa" class="logo">
-    <strong>Easypaisa</strong>
-    <div class="account-section">
-      <p><strong>Account Title:</strong> Numan Ali</p>
-      <p><strong>Account Number:</strong> <span id="easy-account">03314477397</span></p>
-      <button class="copy-btn" onclick="copyText('easy-account')">Copy Account Number</button>
-    </div>
-  </div>
+<a class="wa" href="https://wa.me/923214477397" aria-label="WhatsApp">💬</a>
 
-  <script>
-    function copyText(elementId) {
-      const text = document.getElementById(elementId).innerText;
-      navigator.clipboard.writeText(text).then(() => {
-        alert('Copied: ' + text);
-      });
-    }
-  </script>
+<script>
+document.getElementById('y').textContent=new Date().getFullYear();
+document.getElementById('f').addEventListener('submit',function(e){e.preventDefault();
+ var v=function(i){return document.getElementById(i).value};
+ var t='New connection request\nName: '+v('n')+'\nPhone: '+v('p')+'\nArea: '+v('a')+'\nPackage: '+v('k')+'\n'+v('m');
+ window.open('https://wa.me/923214477397?text='+encodeURIComponent(t),'_blank');});
+</script>
 </body>
 </html>
