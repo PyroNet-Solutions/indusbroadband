@@ -46,7 +46,3 @@ Releases live in `/var/www/indusbroadband-releases/` on vm-sites (last 5 kept, p
 ## Forms
 
 There is no enquiry backend. The Get Connected form validates input, then opens WhatsApp (+92 339 4638700) with the details pre-filled; the customer presses Send. The page says so plainly.
-
-## Needs confirming
-
-- Email address `info@indusbroadband.pk` (from the letterhead; the website domain is `.com.pk`).
