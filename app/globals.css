@@ -222,3 +222,33 @@ img, svg { display: block; max-width: 100%; }
 .river-wave .w3 { animation-name: drift3; }
 @keyframes drift2 { from { transform: translate(0, 6px); } to { transform: translate(-50%, 6px); } }
 @keyframes drift3 { from { transform: translate(0, 12px); } to { transform: translate(-50%, 12px); } }
+
+/* Mobile polish */
+.hero .lead { text-shadow: 0 1px 12px var(--bg), 0 0 2px var(--bg); }
+@media (max-width: 600px) {
+  :root { --s4: 32px; --s5: 48px; --s6: 72px; }
+  .hdr-in { height: 64px; }
+  .mnav[data-open="true"] { inset: 64px 0 0; }
+  .logo { height: 42px; }
+  .hero { min-height: auto; }
+  .hero-in { padding: 48px 0 120px; }
+  .hero h1 { font-size: clamp(40px, 12vw, 56px); margin: 18px 0; }
+  .eyebrow { letter-spacing: .1em; font-size: 11px; }
+  .hero-cta .btn { flex: 1 1 100%; justify-content: center; }
+  .hero-meta { gap: 18px 28px; margin-top: 36px; }
+  .hero-meta > div { flex: 1 1 40%; }
+  .page-hero { padding: 56px 0 40px; }
+  .page-hero h1 { font-size: clamp(36px, 10.5vw, 52px); }
+  .sec-head h2 { font-size: clamp(30px, 9vw, 40px); }
+  .row { padding: 24px 0; }
+  .row:hover { padding-left: 0; }
+  .row > .arr:last-child, .row > span:empty { display: none; }
+  .plan { padding: 28px 22px; }
+  .panel { padding: 28px 22px; }
+  .panel-act .btn { flex: 1 1 100%; justify-content: center; }
+  .lines a { font-size: 16px; padding: 14px 16px; }
+  .faq summary { font-size: 17px; }
+  .wa-fab { width: 52px; height: 52px; right: 14px; bottom: 14px; }
+  .steps li { padding-left: 50px; }
+  .river-wave { height: 36px; margin-top: -36px; }
+}

@@ -48,10 +48,13 @@ export function FiberField() {
     // Channel centre-line and half-width at horizontal position x (0..1).
     const channel = (x: number, time: number) => {
       const s = time * 0.00012;
-      const cy = 0.66 + (my - 0.5) * 0.05
-        + Math.sin(x * 3.1 + s) * 0.09
-        + Math.sin(x * 7.3 - s * 1.7) * 0.025;
-      const half = 0.1 + Math.sin(x * 2.2 + 1.3) * 0.035 + x * 0.04; // widens downstream
+      // On narrow screens the river sits low and flatter so it stays behind the
+      // buttons instead of cutting diagonally through the text.
+      const m = w < 700;
+      const cy = (m ? 0.86 : 0.66) + (my - 0.5) * 0.05
+        + Math.sin(x * 3.1 + s) * (m ? 0.035 : 0.09)
+        + Math.sin(x * 7.3 - s * 1.7) * (m ? 0.012 : 0.025);
+      const half = (m ? 0.06 : 0.1) + Math.sin(x * 2.2 + 1.3) * (m ? 0.015 : 0.035) + x * (m ? 0.02 : 0.04); // widens downstream
       return [cy, half] as const;
     };
 
