@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Indus Broadband"><title>Indus Broadband</title><defs><linearGradient id="g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FF3B30"/><stop offset="1" stop-color="#FF8A00"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="#0B1F3B"/><g transform="translate(4 4) scale(.88)">
+  <g fill="none" stroke="url(#g)" stroke-linecap="round" stroke-width="6">
+    <path d="M6 58 C 20 58, 30 40, 44 20"/>
+    <path d="M6 42 C 18 42, 30 32, 44 20" opacity=".75"/>
+    <path d="M22 60 C 26 46, 34 32, 44 20" opacity=".75"/>
+  </g>
+  <circle cx="46" cy="18" r="10" fill="url(#g)"/>
+  <circle cx="46" cy="18" r="4" fill="#fff" opacity=".9"/></g></svg>
