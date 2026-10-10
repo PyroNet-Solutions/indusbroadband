@@ -14,7 +14,7 @@ export function NetworkDiagram() {
     <svg className="diagram" viewBox="0 0 560 400" role="img" aria-labelledby="nd-t">
       <title id="nd-t">Diagram: fiber runs from the Indus core through points of presence and splitters to each home.</title>
       <defs>
-        <linearGradient id="nd-g" x1="0" x2="1"><stop offset="0" stopColor="#FF3B30" /><stop offset="1" stopColor="#FF8A00" /></linearGradient>
+        <linearGradient id="nd-g" x1="0" x2="1"><stop offset="0" stopColor="#2B3990" /><stop offset="1" stopColor="#25AAE1" /></linearGradient>
       </defs>
       <g fill="none" stroke="url(#nd-g)" strokeWidth="2.5" strokeLinecap="round">
         <path className="strand" d="M70 200 C150 200 150 110 230 110" />
@@ -28,7 +28,7 @@ export function NetworkDiagram() {
       </g>
       {nodes.map((n, i) => (
         <g key={i}>
-          <circle className="pulse" cx={n.x} cy={n.y} r="14" fill="#FF8A00" opacity=".25" style={{ animationDelay: `${i * 0.3}s` }} />
+          <circle className="pulse" cx={n.x} cy={n.y} r="14" fill="#25AAE1" opacity=".25" style={{ animationDelay: `${i * 0.3}s` }} />
           <circle cx={n.x} cy={n.y} r={i === 0 ? 10 : 7} fill="url(#nd-g)" />
           <text x={n.x} y={n.y + 32} textAnchor="middle">{n.label}</text>
         </g>

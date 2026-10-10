@@ -18,6 +18,6 @@ npm run typecheck && npm run lint && npm run build
 ID=$(date +%Y%m%d-%H%M%S)
 tar czf /tmp/indus-out.tgz -C out .
 scp -q /tmp/indus-out.tgz proxmox:/tmp/indus-out.tgz
-# qm guest exec has no file copy; stream the archive in base64 over the agent.
-ssh proxmox "B=\$(base64 -w0 /tmp/indus-out.tgz); qm guest exec $VM --timeout 120 -- bash -c \"mkdir -p $REL/$ID && echo \$B | base64 -d | tar xzf - -C $REL/$ID && chown -R www-data: $REL/$ID && ln -sfn $REL/$ID /var/www/indusbroadband && ls -1 $REL | sort | head -n -5 | xargs -r -I{} rm -rf $REL/{}\"" | grep exitcode
+# qm guest exec has no file copy; stream the archive through the agent's stdin.
+ssh proxmox "qm guest exec $VM --timeout 120 --pass-stdin 1 -- bash -c 'mkdir -p $REL/$ID && tar xzf - -C $REL/$ID && chown -R www-data: $REL/$ID && ln -sfn $REL/$ID /var/www/indusbroadband && ls -1 $REL | grep -v legacy | sort | head -n -5 | xargs -r -I{} rm -rf $REL/{} && readlink /var/www/indusbroadband' < /tmp/indus-out.tgz" | grep -E '"(exitcode|out-data|err-data)"'
 curl -fsS -o /dev/null -w "live: %{http_code}\n" "https://indusbroadband.com.pk/?r=$ID"

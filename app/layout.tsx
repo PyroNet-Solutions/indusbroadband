@@ -13,14 +13,14 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", displ
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: { default: "Indus Broadband | Fiber Internet in Lahore", template: "%s | Indus Broadband" },
-  description: "Fiber and wireless internet for homes and businesses in DHA Phase 8 and Cantt View, Lahore. Unlimited data, local support.",
+  description: "Fiber and wireless internet for homes and businesses in Lahore. Unlimited data and local support.",
   alternates: { canonical: "/" },
   openGraph: { type: "website", siteName: site.name, locale: "en_PK", url: "/" },
   twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {
-  themeColor: [{ media: "(prefers-color-scheme: light)", color: "#f7f9fc" }, { media: "(prefers-color-scheme: dark)", color: "#050b16" }],
+  themeColor: [{ media: "(prefers-color-scheme: light)", color: "#f7f9fc" }, { media: "(prefers-color-scheme: dark)", color: "#070b1f" }],
 };
 
 // Runs before paint so the saved or system theme applies without a flash.
@@ -31,7 +31,7 @@ const orgLd = {
   "@type": "LocalBusiness",
   name: site.legalName,
   url: site.url,
-  logo: `${site.url}/brand/icon.svg`,
+  logo: `${site.url}/brand/logo-light.png`,
   email: site.email,
   telephone: `+${site.whatsapp.e164}`,
   address: { "@type": "PostalAddress", streetAddress: "2nd Floor, Plaza No. 58, CC1, Sector T, DHA Phase 8", addressLocality: "Lahore", addressCountry: "PK" },

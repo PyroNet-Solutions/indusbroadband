@@ -4,7 +4,7 @@ import { Plans } from "@/components/Plans";
 
 export const metadata: Metadata = {
   title: "Internet Services & Plans",
-  description: "Home fiber, wireless broadband and business internet from Indus Broadband in Lahore. Plans from Rs 1,500 per month with unlimited data.",
+  description: "Home fiber, wireless broadband and business internet from Indus Broadband in Lahore, with unlimited data.",
   alternates: { canonical: "/services/" },
 };
 
@@ -31,7 +31,7 @@ export default function Services() {
       </div></section>
 
       <section className="sec sec-alt" id="plans" aria-labelledby="p-h"><div className="wrap">
-        <div className="sec-head reveal"><span className="eyebrow">Home plans</span><h2 id="p-h">Choose your speed.</h2></div>
+        <div className="sec-head reveal"><span className="eyebrow">Home packages</span><h2 id="p-h">Choose your package.</h2></div>
         <Plans />
       </div></section>
 

@@ -1,27 +1,31 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { CoverageSearch } from "@/components/CoverageSearch";
+import { LeadForm } from "@/components/LeadForm";
+import { site, waLink } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Coverage Areas",
-  description: "Check where Indus Broadband fiber and wireless internet is available in Lahore, or request a free site survey.",
+  title: "Coverage Check",
+  description: "Find out whether Indus Broadband fiber or wireless internet is available at your address. Request a free site survey.",
   alternates: { canonical: "/coverage/" },
 };
+
+const steps = [
+  { h: "Send your address", p: "Use the form or WhatsApp us your location pin." },
+  { h: "Free site survey", p: "Our team checks fiber and wireless feasibility at your address." },
+  { h: "We confirm", p: "You hear back with the options available to you. No charge, no commitment." },
+];
 
 export default function Coverage() {
   return (
     <>
       <section className="page-hero"><div className="wrap">
         <span className="eyebrow">Coverage</span>
-        <h1>Where the <span className="grad-text">light reaches.</span></h1>
-        <p className="lead">Our network is growing. If your area isn&apos;t listed, a free site survey is the fastest way to find out.</p>
+        <h1>Does the light <span className="grad-text">reach you?</span></h1>
+        <p className="lead">Our network is growing across Lahore. The quickest way to know is a free site survey at your address.</p>
+        <div className="hero-cta" style={{ animation: "none" }}><a className="btn btn-primary" href={waLink("Hi, please check coverage at my location (pin attached):")}>Send location on WhatsApp</a></div>
       </div></section>
-      <section className="sec"><div className="wrap story" style={{ alignItems: "start" }}>
-        <div className="reveal"><CoverageSearch /></div>
-        <div className="panel reveal" style={{ gridTemplateColumns: "1fr" }}>
-          <div><h2>Free site survey</h2><p>Our team visits your location and checks feasibility for fiber or wireless. No charge, no commitment.</p></div>
-          <div className="panel-act" style={{ justifyContent: "flex-start" }}><Link className="btn btn-primary" href="/contact/?type=coverage">Request survey <span className="arr" aria-hidden="true">→</span></Link></div>
-        </div>
+      <section className="sec"><div className="wrap contact">
+        <div className="reveal"><ol className="steps">{steps.map((s) => <li key={s.h}><h3>{s.h}</h3><p>{s.p}</p></li>)}</ol><p className="addr">Questions? Call {site.helplines[0]}.</p></div>
+        <div className="reveal"><LeadForm defaultKind="coverage" /></div>
       </div></section>
     </>
   );

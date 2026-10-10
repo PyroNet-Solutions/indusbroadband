@@ -3,6 +3,7 @@ import { Faq, faqs } from "@/components/Faq";
 import { FiberField } from "@/components/FiberField";
 import { NetworkDiagram } from "@/components/NetworkDiagram";
 import { Plans } from "@/components/Plans";
+import { RiverWave } from "@/components/RiverWave";
 import { site, telHref, waLink } from "@/lib/site";
 
 const services = [
@@ -17,7 +18,7 @@ export default function Home() {
       <section className="hero" aria-labelledby="hero-h">
         <FiberField />
         <div className="wrap hero-in">
-          <span className="eyebrow">Indus Broadband · Lahore</span>
+          <span className="eyebrow">Indus Broadband · A river of light</span>
           <h1 id="hero-h">
             <span className="ln"><span>The future</span></span>
             <span className="ln"><span>moves at the</span></span>
@@ -25,18 +26,19 @@ export default function Home() {
           </h1>
           <p className="lead">Fiber and wireless internet engineered for the way you live, work and grow. Unlimited data, local installation and a support team that answers.</p>
           <div className="hero-cta">
-            <Link className="btn btn-primary" href="/services/#plans">See plans <span className="arr" aria-hidden="true">→</span></Link>
+            <Link className="btn btn-primary" href="/services/#plans">See packages <span className="arr" aria-hidden="true">→</span></Link>
             <Link className="btn btn-ghost" href="/coverage/">Check coverage</Link>
           </div>
           <div className="hero-meta">
             <div><b>Unlimited</b>data on every plan</div>
-            <div><b>From Rs 1,500</b>per month</div>
+            <div><b>Fiber &amp; wireless</b>for homes and business</div>
             <div><b>{site.whatsapp.display}</b>WhatsApp helpline</div>
           </div>
         </div>
       </section>
 
-      <section className="sec" aria-labelledby="svc-h">
+      <RiverWave />
+      <section className="sec sec-alt" style={{ borderTop: 0 }} aria-labelledby="svc-h">
         <div className="wrap">
           <div className="sec-head reveal"><span className="eyebrow">What we do</span><h2 id="svc-h">Connectivity, <span className="grad-text">without the noise.</span></h2></div>
           <div className="rows">
@@ -66,7 +68,7 @@ export default function Home() {
 
       <section className="sec" id="plans" aria-labelledby="plans-h">
         <div className="wrap">
-          <div className="sec-head reveal"><span className="eyebrow">Plans</span><h2 id="plans-h">Simple monthly plans. <span className="grad-text">Unlimited data.</span></h2><p className="lead">No contracts and no data caps. Pick a speed and our team handles the rest.</p></div>
+          <div className="sec-head reveal"><span className="eyebrow">Plans</span><h2 id="plans-h">Packages for every home. <span className="grad-text">Unlimited data.</span></h2><p className="lead">No data caps. Tell us how you use the internet and our team recommends the right package.</p></div>
           <Plans />
         </div>
       </section>

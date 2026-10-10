@@ -20,16 +20,16 @@ const kinds: Record<Kind, string> = {
 const PK_PHONE = /^(\+?92|0)3\d{2}[\s-]?\d{7}$/;
 
 // Deep links from plan buttons and CTAs: /contact/?plan=gamer or ?type=coverage
-function FromParams() {
+function FromParams({ fallback }: { fallback: Kind }) {
   const q = useSearchParams();
   const t = q.get("type");
   const p = plans.find((x) => x.id === q.get("plan"));
-  const kind: Kind = p ? "connection" : t && t in kinds ? (t as Kind) : "connection";
+  const kind: Kind = p ? "connection" : t && t in kinds ? (t as Kind) : fallback;
   return <Form key={q.toString()} initialKind={kind} initialPlan={p} />;
 }
 
-export function LeadForm() {
-  return <Suspense fallback={<Form initialKind="connection" />}><FromParams /></Suspense>;
+export function LeadForm({ defaultKind = "connection" }: { defaultKind?: Kind }) {
+  return <Suspense fallback={<Form initialKind={defaultKind} />}><FromParams fallback={defaultKind} /></Suspense>;
 }
 
 function Form({ initialKind, initialPlan }: { initialKind: Kind; initialPlan?: (typeof plans)[number] }) {
@@ -38,7 +38,7 @@ function Form({ initialKind, initialPlan }: { initialKind: Kind; initialPlan?: (
   const [status, setStatus] = useState<"idle" | "opening" | "handed" | "blocked">("idle");
   const [plan, setPlan] = useState<string>(() => {
     const p = initialPlan ?? plans.find((x) => x.featured) ?? plans[0];
-    return `${p.name} ${p.speed} Mbps`;
+    return p.name;
   });
 
 
@@ -97,12 +97,12 @@ function Form({ initialKind, initialPlan }: { initialKind: Kind; initialPlan?: (
         <div className="field"><label htmlFor="lf-name">Full name</label><input id="lf-name" name="name" autoComplete="name" {...inv("name")} />{err("name")}</div>
         <div className="field"><label htmlFor="lf-phone">Mobile number</label><input id="lf-phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="03xx xxxxxxx" {...inv("phone")} />{err("phone")}</div>
       </div>
-      <div className="field"><label htmlFor="lf-area">Area / address</label><input id="lf-area" name="area" autoComplete="street-address" placeholder="e.g. DHA Phase 8, Sector T" {...inv("area")} />{err("area")}</div>
+      <div className="field"><label htmlFor="lf-area">Area / address</label><input id="lf-area" name="area" autoComplete="street-address" placeholder="Street, block, society" {...inv("area")} />{err("area")}</div>
       {kind === "connection" && (
         <div className="field">
           <label htmlFor="lf-plan">Plan</label>
           <select id="lf-plan" name="plan" value={plan} onChange={(e) => setPlan(e.target.value)}>
-            {plans.map((p) => <option key={p.id} value={`${p.name} ${p.speed} Mbps`}>{p.name} · {p.speed} Mbps · Rs {p.price}/mo</option>)}
+            {plans.map((p) => <option key={p.id} value={p.name}>{p.name}: {p.blurb}</option>)}
             <option value="Not sure yet">Not sure yet</option>
           </select>
         </div>

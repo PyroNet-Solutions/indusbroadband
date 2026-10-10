@@ -2,12 +2,13 @@
 
 import { useEffect, useRef } from "react";
 
-// Hero backdrop: fiber strands flowing across the screen with light pulses
-// travelling along them toward glowing network nodes. Plain 2D canvas, no
+// Hero backdrop: "the Indus", a river of light. Dozens of fiber-like currents
+// flow left to right inside one meandering channel; the centre runs faster than
+// the banks, like water, and light pulses drift downstream. Plain 2D canvas, no
 // dependencies. Decorative only: hidden from assistive tech, pauses off-screen
-// and when the tab is hidden, and draws a single still frame for reduced motion.
-type Strand = { y0: number; amp: number; freq: number; phase: number; w: number; hue: number };
-type Pulse = { s: number; t: number; v: number };
+// and when the tab is hidden, and draws one still frame for reduced motion.
+type Current = { off: number; w: number; tone: number; wob: number };
+type Pulse = { c: number; x: number; v: number };
 
 export function FiberField() {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -18,97 +19,106 @@ export function FiberField() {
     if (!canvas || !ctx) return;
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let w = 0, h = 0, dpr = 1, raf = 0, visible = true;
-    let mx = 0.5, my = 0.5, tmx = 0.5, tmy = 0.5;
-    let strands: Strand[] = [];
+    let w = 0, h = 0, raf = 0, visible = true, t0 = 0;
+    let my = 0.5, tmy = 0.5;
+    let currents: Current[] = [];
     let pulses: Pulse[] = [];
 
     const isDark = () => document.documentElement.dataset.theme === "dark";
 
     const build = () => {
-      const n = w < 700 ? 9 : 16;
-      strands = Array.from({ length: n }, (_, i) => ({
-        y0: 0.15 + (i / n) * 0.8,
-        amp: 0.04 + Math.random() * 0.1,
-        freq: 0.8 + Math.random() * 1.4,
-        phase: Math.random() * Math.PI * 2,
-        w: 0.6 + Math.random() * 1.4,
-        hue: Math.random(),
+      const n = w < 700 ? 22 : 38;
+      currents = Array.from({ length: n }, (_, i) => ({
+        off: (i / (n - 1)) * 2 - 1,                 // -1 bank .. +1 bank
+        w: 0.5 + Math.random() * 1.3,
+        tone: Math.random(),
+        wob: Math.random() * Math.PI * 2,
       }));
-      pulses = Array.from({ length: n * 2 }, () => ({ s: Math.floor(Math.random() * n), t: Math.random(), v: 0.0012 + Math.random() * 0.003 }));
+      pulses = Array.from({ length: Math.round(n * 1.6) }, () => ({ c: Math.floor(Math.random() * n), x: Math.random(), v: 0 }));
     };
 
     const resize = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       w = canvas.clientWidth; h = canvas.clientHeight;
       canvas.width = w * dpr; canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       build();
     };
 
-    // Strands sweep from lower-left toward a convergence point on the right.
-    const point = (s: Strand, t: number, time: number) => {
-      const cx = 0.78 + (mx - 0.5) * 0.06, cy = 0.42 + (my - 0.5) * 0.08;
-      const x = -0.05 + t * (cx + 0.05);
-      const ease = t * t * (3 - 2 * t);
-      const yBase = s.y0 + (cy - s.y0) * ease;
-      const wave = Math.sin(t * s.freq * Math.PI * 2 + s.phase + time * 0.0004) * s.amp * (1 - ease);
-      return [x * w, (yBase + wave) * h] as const;
+    // Channel centre-line and half-width at horizontal position x (0..1).
+    const channel = (x: number, time: number) => {
+      const s = time * 0.00012;
+      const cy = 0.66 + (my - 0.5) * 0.05
+        + Math.sin(x * 3.1 + s) * 0.09
+        + Math.sin(x * 7.3 - s * 1.7) * 0.025;
+      const half = 0.1 + Math.sin(x * 2.2 + 1.3) * 0.035 + x * 0.04; // widens downstream
+      return [cy, half] as const;
+    };
+
+    const at = (c: Current, x: number, time: number) => {
+      const [cy, half] = channel(x, time);
+      const ripple = Math.sin(x * 22 + c.wob + time * 0.0016) * 0.004;
+      return [x * w, (cy + c.off * half + ripple) * h] as const;
     };
 
     const draw = (time: number) => {
-      mx += (tmx - mx) * 0.05; my += (tmy - my) * 0.05;
+      my += (tmy - my) * 0.04;
       ctx.clearRect(0, 0, w, h);
       const dark = isDark();
-      const steps = 70;
+      const steps = w < 700 ? 60 : 110;
 
-      for (const s of strands) {
+      // Water body glow under the currents.
+      ctx.beginPath();
+      for (let i = 0; i <= steps; i++) { const x = i / steps; const [cy, half] = channel(x, time); ctx.lineTo(x * w, (cy - half * 1.15) * h); }
+      for (let i = steps; i >= 0; i--) { const x = i / steps; const [cy, half] = channel(x, time); ctx.lineTo(x * w, (cy + half * 1.15) * h); }
+      ctx.closePath();
+      const body = ctx.createLinearGradient(0, 0, w, 0);
+      body.addColorStop(0, dark ? "rgba(43,57,144,0.10)" : "rgba(37,170,225,0.05)");
+      body.addColorStop(1, dark ? "rgba(37,170,225,0.18)" : "rgba(37,170,225,0.12)");
+      ctx.fillStyle = body; ctx.fill();
+
+      for (const c of currents) {
         ctx.beginPath();
-        for (let i = 0; i <= steps; i++) {
-          const [x, y] = point(s, i / steps, time);
-          if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-        }
-        ctx.strokeStyle = dark ? `rgba(255,${110 + s.hue * 60},60,0.16)` : `rgba(11,31,59,0.10)`;
-        ctx.lineWidth = s.w;
+        for (let i = 0; i <= steps; i++) { const [x, y] = at(c, i / steps, time); if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); }
+        const edge = Math.abs(c.off);
+        ctx.strokeStyle = dark
+          ? `rgba(${60 + c.tone * 50},${150 + c.tone * 50},235,${0.22 - edge * 0.1})`
+          : `rgba(${43 - c.tone * 6},${57 + c.tone * 110},${144 + c.tone * 80},${0.2 - edge * 0.08})`;
+        ctx.lineWidth = c.w;
         ctx.stroke();
       }
 
+      // Light drifting downstream: faster mid-channel, slower at the banks.
       ctx.globalCompositeOperation = dark ? "lighter" : "source-over";
       for (const p of pulses) {
-        if (!reduce) { p.t += p.v; if (p.t > 1) { p.t = 0; p.s = Math.floor(Math.random() * strands.length); } }
-        const s = strands[p.s];
-        if (!s) continue;
-        for (let k = 0; k < 14; k++) {
-          const tt = p.t - k * 0.006;
-          if (tt < 0) break;
-          const [x, y] = point(s, tt, time);
-          const a = (1 - k / 14) * (dark ? 0.9 : 0.75);
-          ctx.fillStyle = k < 2 ? `rgba(255,220,180,${a})` : `rgba(255,${80 + k * 6},40,${a * 0.6})`;
-          ctx.beginPath(); ctx.arc(x, y, Math.max(0.6, 2.4 - k * 0.14), 0, Math.PI * 2); ctx.fill();
+        const c = currents[p.c];
+        if (!c) continue;
+        const speed = 0.0011 + (1 - Math.abs(c.off)) * 0.0024;
+        if (!reduce) { p.x += speed; if (p.x > 1.05) { p.x = -0.05; p.c = Math.floor(Math.random() * currents.length); } }
+        for (let k = 0; k < 16; k++) {
+          const xx = p.x - k * 0.005;
+          if (xx < 0) break;
+          const [x, y] = at(c, xx, time);
+          const a = (1 - k / 16) * (dark ? 0.85 : 0.6);
+          ctx.fillStyle = k < 2 ? `rgba(220,245,255,${a})` : `rgba(37,${150 + k * 4},225,${a * 0.55})`;
+          ctx.beginPath(); ctx.arc(x, y, Math.max(0.5, 2.2 - k * 0.12), 0, Math.PI * 2); ctx.fill();
         }
       }
-
-      // Convergence node
-      const [nx, ny] = point(strands[0], 1, time);
-      const r = 90 + Math.sin(time * 0.002) * 8;
-      const g = ctx.createRadialGradient(nx, ny, 0, nx, ny, r);
-      g.addColorStop(0, "rgba(255,150,60,0.55)"); g.addColorStop(0.3, "rgba(255,70,40,0.18)"); g.addColorStop(1, "rgba(255,60,40,0)");
-      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(nx, ny, r, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(nx, ny, 4, 0, Math.PI * 2); ctx.fill();
       ctx.globalCompositeOperation = "source-over";
     };
 
     const loop = (time: number) => {
-      draw(time);
+      draw(time - t0);
       if (visible && !document.hidden) raf = requestAnimationFrame(loop);
     };
     const start = () => { cancelAnimationFrame(raf); if (reduce) draw(0); else raf = requestAnimationFrame(loop); };
 
     const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) start(); else cancelAnimationFrame(raf); });
-    const onMove = (e: PointerEvent) => { tmx = e.clientX / window.innerWidth; tmy = e.clientY / window.innerHeight; };
+    const onMove = (e: PointerEvent) => { tmy = e.clientY / window.innerHeight; };
     const onVis = () => { if (!document.hidden && visible) start(); };
     const mo = new MutationObserver(() => { if (reduce) draw(0); });
 
+    t0 = performance.now() - 20000;
     resize(); start();
     io.observe(canvas);
     window.addEventListener("resize", resize);

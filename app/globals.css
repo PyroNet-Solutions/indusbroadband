@@ -1,11 +1,11 @@
 /* Indus Broadband design system. Tokens first, then primitives, then sections. */
 :root {
-  --red: #ff3b30; --orange: #ff8a00; --navy: #0b1f3b; --mist: #e6ecf3;
-  --grad: linear-gradient(100deg, var(--red), var(--orange));
-  --bg: #f7f9fc; --bg-2: #ffffff; --surface: #ffffff; --ink: #0b1f3b; --ink-2: #44546e;
-  --line: #dbe3ee; --glow: rgba(255, 90, 40, .18);
-  --focus: #e8430f; --accent-text: #c92a1f;
-  --grad-text: linear-gradient(100deg, #d8261b, #d46200);
+  --red: #2b3990; --orange: #25aae1; --navy: #1b2566; --mist: #e6ecf3;
+  --grad: linear-gradient(100deg, #2b3990, #25aae1);
+  --bg: #f7f9fc; --bg-2: #ffffff; --surface: #ffffff; --ink: #141a3d; --ink-2: #44546e;
+  --line: #dbe3ee; --glow: rgba(37, 170, 225, .22);
+  --focus: #1f8fc2; --accent-text: #2b3990;
+  --grad-text: linear-gradient(100deg, #2b3990, #1c8fc4);
   --r: 14px; --r-lg: 22px;
   --s2: 16px; --s3: 24px; --s4: 40px; --s5: 64px; --s6: 112px;
   --ease: cubic-bezier(.2, .7, .1, 1);
@@ -13,8 +13,8 @@
   color-scheme: light;
 }
 :root[data-theme="dark"] {
-  --bg: #050b16; --bg-2: #0a1426; --surface: #0e1a30; --ink: #f2f5fa; --ink-2: #a3b3ca;
-  --line: #1f2e4a; --glow: rgba(255, 90, 40, .28); --accent-text: #ff8a00; --focus: #ff8a00; --grad-text: var(--grad);
+  --bg: #070b1f; --bg-2: #0c1230; --surface: #121a3f; --ink: #f2f5fa; --ink-2: #a3b3ca;
+  --line: #232d5c; --glow: rgba(37, 170, 225, .3); --accent-text: #4cc0ef; --focus: #4cc0ef; --grad-text: linear-gradient(100deg, #6f7ff0, #4cc0ef);
   color-scheme: dark;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,7 +35,7 @@ img, svg { display: block; max-width: 100%; }
 
 /* Buttons */
 .btn { position: relative; display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 24px; border-radius: 999px; font-weight: 600; font-size: 15px; border: 0; cursor: pointer; transition: transform .25s var(--ease), box-shadow .25s; white-space: nowrap; font-family: inherit; }
-.btn-primary { background: linear-gradient(100deg, #e0261b, #e66f00); color: #fff; box-shadow: 0 8px 30px var(--glow); }
+.btn-primary { background: linear-gradient(100deg, #2b3990, #1c8fc4); color: #fff; box-shadow: 0 8px 30px var(--glow); }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px var(--glow); }
 .btn-primary:disabled { opacity: .6; cursor: progress; transform: none; }
 .btn-ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--line); }
@@ -46,7 +46,7 @@ img, svg { display: block; max-width: 100%; }
 /* Header */
 .hdr { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px); border-bottom: 1px solid var(--line); }
 .hdr-in { height: 72px; display: flex; align-items: center; gap: var(--s3); }
-.logo { display: block; height: 40px; width: auto; aspect-ratio: 280 / 96; }
+.logo { display: block; height: 48px; width: auto; aspect-ratio: 1121 / 748; }
 .logo-dark { display: none; }
 :root[data-theme="dark"] .logo-light { display: none; }
 :root[data-theme="dark"] .logo-dark { display: block; }
@@ -124,7 +124,7 @@ img, svg { display: block; max-width: 100%; }
 .plan:last-child { border-right: 0; }
 .plan:hover { background: color-mix(in srgb, var(--orange) 4%, var(--surface)); }
 .plan.feat::before { content: ""; position: absolute; inset: 0 0 auto; height: 4px; background: var(--grad); }
-.plan .tag { align-self: flex-start; font: 600 11px var(--font-mono), monospace; letter-spacing: .12em; text-transform: uppercase; background: #c92a1f; color: #fff; padding: 5px 10px; border-radius: 999px; }
+.plan .tag { align-self: flex-start; font: 600 11px var(--font-mono), monospace; letter-spacing: .12em; text-transform: uppercase; background: #2b3990; color: #fff; padding: 5px 10px; border-radius: 999px; }
 .plan h3 { font-size: 22px; }
 .speed { font: 700 clamp(56px, 6vw, 80px)/1 var(--font-display), sans-serif; letter-spacing: -.04em; }
 .speed small { font-size: 18px; color: var(--ink-2); letter-spacing: 0; margin-left: 4px; }
@@ -137,7 +137,7 @@ img, svg { display: block; max-width: 100%; }
 
 /* CTA panel (always navy, both themes) */
 .panel { display: grid; grid-template-columns: 1.3fr 1fr; gap: var(--s4); padding: var(--s5); border-radius: var(--r-lg); background: var(--navy); color: #fff; position: relative; overflow: hidden; border: 1px solid #1f3560; }
-.panel::after { content: ""; position: absolute; right: -10%; top: -40%; width: 60%; aspect-ratio: 1; background: radial-gradient(circle, rgba(255,90,40,.45), transparent 65%); pointer-events: none; }
+.panel::after { content: ""; position: absolute; right: -10%; top: -40%; width: 60%; aspect-ratio: 1; background: radial-gradient(circle, rgba(37,170,225,.45), transparent 65%); pointer-events: none; }
 .panel h2 { font-size: clamp(30px, 4vw, 52px); margin-bottom: 12px; }
 .panel p { color: #c3cfe0; }
 .panel > * { position: relative; z-index: 1; }
@@ -208,3 +208,17 @@ img, svg { display: block; max-width: 100%; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .js .reveal { opacity: 1; transform: none; }
 }
+
+/* River dividers */
+.river-wave { position: relative; height: 60px; margin-top: -60px; overflow: hidden; pointer-events: none; z-index: 1; }
+.river-wave.flip { transform: scaleY(-1); margin-top: 0; margin-bottom: -60px; }
+.river-wave svg { position: absolute; left: 0; bottom: 0; width: 200%; height: 100%; }
+.river-wave path { animation: drift linear infinite; }
+.river-wave .w1 { fill: var(--orange); opacity: .14; animation-duration: 18s; }
+.river-wave .w2 { fill: var(--red); opacity: .12; animation-duration: 26s; animation-direction: reverse; transform: translateY(6px); }
+.river-wave .w3 { fill: var(--bg-2); animation-duration: 34s; transform: translateY(12px); }
+@keyframes drift { to { transform: translateX(-50%); } }
+.river-wave .w2 { animation-name: drift2; }
+.river-wave .w3 { animation-name: drift3; }
+@keyframes drift2 { from { transform: translate(0, 6px); } to { transform: translate(-50%, 6px); } }
+@keyframes drift3 { from { transform: translate(0, 12px); } to { transform: translate(-50%, 12px); } }

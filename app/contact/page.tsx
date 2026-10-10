@@ -14,7 +14,7 @@ export default function Contact() {
       <section className="page-hero"><div className="wrap">
         <span className="eyebrow">Get connected</span>
         <h1>Let&apos;s get you <span className="grad-text">online.</span></h1>
-        <p className="lead">Tell us what you need and where. Our team will confirm coverage and get back to you.</p>
+        <p className="lead">Tell us what you need and where. Our team will confirm availability and get back to you.</p>
       </div></section>
       <section className="sec"><div className="wrap contact">
         <div className="reveal">

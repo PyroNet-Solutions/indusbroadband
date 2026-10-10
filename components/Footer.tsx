@@ -1,14 +1,17 @@
 import Link from "next/link";
 import { site, telHref, waLink } from "@/lib/site";
 import { Logo } from "./Logo";
+import { RiverWave } from "./RiverWave";
 
 export function Footer() {
   return (
-    <footer className="ftr">
+    <>
+    <RiverWave />
+    <footer className="ftr" style={{ borderTop: 0 }}>
       <div className="wrap">
         <div className="ftr-grid">
           <div>
-            <Logo height={44} />
+            <Logo height={64} />
             <p className="muted" style={{ marginTop: 16, maxWidth: "34ch" }}>Fiber and wireless internet for homes and businesses in Lahore.</p>
           </div>
           <div>
@@ -42,6 +45,7 @@ export function Footer() {
         </div>
       </div>
     </footer>
+    </>
   );
 }
 
