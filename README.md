@@ -41,7 +41,7 @@ Releases live in `/var/www/indusbroadband-releases/` on vm-sites (last 5 kept, p
 
 - Files: vm-sites (10.10.10.3), nginx block `deploy/vm-sites.indusbroadband.com.pk.conf`.
 - TLS and the Cloudflare-only filter: ct-edge (10.10.10.2), `deploy/ct-edge.indusbroadband.conf`.
-- Cloudflare: proxied A records `@` and `www` to 144.76.119.9, SSL mode Full.
+- Cloudflare: proxied A records `@` and `www` to 144.76.119.9, SSL mode Full (strict) with a Cloudflare Origin certificate (valid to 2041; key generated on ct-edge, never left the server).
 
 ## Forms
 
