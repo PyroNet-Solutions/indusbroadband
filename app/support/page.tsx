@@ -4,7 +4,7 @@ import { Faq, faqs } from "@/components/Faq";
 import { site, telHref, waLink } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Support & FAQ",
+  title: "Internet Support, Helplines & FAQ",
   description: "Indus Broadband helplines, WhatsApp support, troubleshooting steps and answers to common questions.",
   alternates: { canonical: "/support/" },
 };
@@ -46,6 +46,7 @@ export default function Support() {
         </div>
       </div></section>
 
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }) }} />
       <section className="sec sec-alt" aria-labelledby="f-h"><div className="wrap">
         <div className="sec-head reveal"><span className="eyebrow">FAQ</span><h2 id="f-h">Frequently asked questions</h2></div>
         <div className="reveal"><Faq items={faqs} /></div>

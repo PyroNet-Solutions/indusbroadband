@@ -3,7 +3,7 @@ import { LeadForm } from "@/components/LeadForm";
 import { site, waLink } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Coverage Check",
+  title: "Check Internet Availability Near You in Lahore",
   description: "Find out whether Indus Broadband fiber or wireless internet is available at your address. Request a free site survey.",
   alternates: { canonical: "/coverage/" },
 };

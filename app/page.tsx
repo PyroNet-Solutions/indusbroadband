@@ -24,7 +24,7 @@ export default function Home() {
             <span className="ln"><span>moves at the</span></span>
             <span className="ln"><span className="grad-text">speed of light.</span></span>
           </h1>
-          <p className="lead">Fiber and wireless internet engineered for the way you live, work and grow. Unlimited data, local installation and a support team that answers.</p>
+          <p className="lead">Indus Broadband is a fiber and wireless internet service provider in Lahore, engineered for the way you live, work and grow. Unlimited data, local installation and a support team that answers.</p>
           <div className="hero-cta">
             <Link className="btn btn-primary" href="/services/#plans">See packages <span className="arr" aria-hidden="true">→</span></Link>
             <Link className="btn btn-ghost" href="/coverage/">Check coverage</Link>

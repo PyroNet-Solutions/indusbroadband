@@ -3,8 +3,8 @@ import Link from "next/link";
 import { Plans } from "@/components/Plans";
 
 export const metadata: Metadata = {
-  title: "Internet Services & Plans",
-  description: "Home fiber, wireless broadband and business internet from Indus Broadband in Lahore, with unlimited data.",
+  title: "Fiber, Wireless & Business Internet Packages in Lahore",
+  description: "Home fiber (FTTH), wireless broadband and business/dedicated internet packages from Indus Broadband, an ISP in Lahore. Unlimited data and local installation.",
   alternates: { canonical: "/services/" },
 };
 

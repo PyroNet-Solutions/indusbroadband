@@ -12,8 +12,9 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", displ
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: "Indus Broadband | Fiber Internet in Lahore", template: "%s | Indus Broadband" },
-  description: "Fiber and wireless internet for homes and businesses in Lahore. Unlimited data and local support.",
+  title: { default: "Indus Broadband | Fiber Internet Service Provider (ISP) in Lahore", template: "%s | Indus Broadband" },
+  description: "Indus Broadband is a fiber and wireless internet service provider (ISP) in Lahore. Fast, unlimited home internet, business and dedicated internet, local installation and 24/7 WhatsApp support.",
+  keywords: ["internet service provider Lahore", "ISP in Lahore", "fiber internet Lahore", "FTTH Lahore", "home internet Lahore", "unlimited internet Lahore", "business internet Lahore", "dedicated internet Pakistan", "wireless internet Lahore", "best ISP near me", "Indus Broadband"],
   alternates: { canonical: "/" },
   openGraph: { type: "website", siteName: site.name, locale: "en_PK", url: "/" },
   twitter: { card: "summary_large_image" },
@@ -35,7 +36,16 @@ const orgLd = {
   email: site.email,
   telephone: `+${site.whatsapp.e164}`,
   address: { "@type": "PostalAddress", streetAddress: "2nd Floor, Plaza No. 58, CC1, Sector T, DHA Phase 8", addressLocality: "Lahore", addressCountry: "PK" },
-  areaServed: "Lahore",
+  areaServed: { "@type": "City", name: "Lahore" },
+  description: "Fiber and wireless internet service provider in Lahore, Pakistan.",
+  image: `${site.url}/brand/logo-light.png`,
+  priceRange: "Contact for packages",
+  contactPoint: [{ "@type": "ContactPoint", telephone: `+${site.whatsapp.e164}`, contactType: "customer support", availableLanguage: ["en", "ur"] }],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Internet services",
+    itemListElement: ["Home Fiber Internet (FTTH)", "Wireless Broadband", "Business & Dedicated Internet"].map((n) => ({ "@type": "Offer", itemOffered: { "@type": "Service", serviceType: "Internet service", name: n } })),
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -44,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }} />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9110837644657481" crossOrigin="anonymous" />
       </head>
       <body>
         <a className="skip" href="#main">Skip to content</a>

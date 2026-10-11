@@ -3,7 +3,7 @@ import Link from "next/link";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About Indus Broadband, Lahore ISP",
   description: "Indus Broadband (Pvt) Ltd is a Lahore internet service provider based in DHA Phase 8, delivering fiber and wireless connectivity.",
   alternates: { canonical: "/about/" },
 };

@@ -3,7 +3,7 @@ import { LeadForm } from "@/components/LeadForm";
 import { site, telHref, waLink } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Get Connected",
+  title: "Get a New Internet Connection in Lahore",
   description: "Request a new Indus Broadband connection, a business quote or a free site survey. WhatsApp +92 339 4638700.",
   alternates: { canonical: "/contact/" },
 };
